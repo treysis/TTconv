@@ -15,7 +15,7 @@
 /* Return if year is leap year or not. */
 int isLeap(int y)
 {
-    if (y%100 != 0 && y%4 == 0 || y %400 == 0)
+    if ((y%100 != 0 && y%4 == 0) || y %400 == 0)
         return 1;
 
     return 0;
@@ -150,93 +150,92 @@ char * convNMEA(char *nmea_msg)
     int x = 7168;
     int crc;
 
-    char nmtype[7], nmts[12], nmav[2], nmla[15], nmns[10], nmlo[15], nmew[10], nmsp[10], nmtc[10], nmea_date[7], nmcrc[5];
+    //char nmea_date[7];
 
     //strcpy(nmea_msg, "$GPRMC,081836.000,A,3251.65,S,14207.36,E,000.0,360.0,130999,,,E*7E");
-    ////fprintf(stdout, "SSCANF: dissecting...\n");
-    sscanf(nmea_msg, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],,,%[^*]", nmtype, nmts, nmav, nmla, nmns, nmlo, nmew, nmsp, nmtc, nmea_date, nmcrc);
-    //sscanf(nmea_msg, "%[^,],%[^,],%[^,],,,,,,,%[^,],,,%[^*]", nmtype, nmts, nmav, nmea_date, nmcrc);
-    ////fprintf(stdout, "SSCANF: done.\n");
+    //strcpy(nmea_msg, "$GPRMC,191029.000,V,,,,,,,211099,,,N*4D");
+    //strcpy(nmea_msg, "$GPRMC,182724.000,V,,,,,,,,,,N*47");
+    //strcpy(nmea_msg, "$GPRMC,100900.000,V,4715.2229,N,01120.5234,E,,,221099,,,N*71");
 
-    if (!strncmp(nmea_msg,"$GPRMC", 6)) // && !strcmp(nmav,"A"))    // strcmp returns 0 if strings match!
+    ////printf("Dissecting...\n");
+
+    if (!strncmp(nmea_msg,"$GPRMC", 6)) // strcmp returns 0 if strings match!
     {
-        if (nmav[0] == 'V')
+        /* Dissecting NMEA sentence and extract date --> arr[9] */
+        char arr[13][16];
+        int i = 0;
+        int j = 0;
+        while(i < strlen(nmea_msg))
         {
-            sscanf(nmea_msg, "%[^,],%[^,],%[^,],,,,,,,%[^,],,,%[^*]", nmtype, nmts, nmav, nmea_date, nmcrc);
-            if (!strcmp(nmea_date,""))
+            int k = 0;
+            while (nmea_msg[i] != ',' && i < strlen(nmea_msg))
             {
-                //fprintf(stdout, "...\n");
-                sscanf(nmea_msg, "%[^,],%[^,],%[^,],,,,,,,,,,%[^*]", nmtype, nmts, nmav, nmcrc);
+                arr[j][k] = nmea_msg[i];
+                i++; k++;
             }
+            arr[j][k] = '\0';
+
+            //printf("%s", arr[j]);
+            j++;
+            //printf("\n");
+            i++;
         }
+        //strcpy(nmea_date, arr[9]);
+        //printf("NMEA-date (old): %s\n", arr[9]);
 
-        //fprintf(stdout, "Valid $GPRMC detected! --> %s %c\n", nmea_date, nmcrc[0]);
-        //fprintf(stdout, "nmtype: %s\nnmts: %s\nnmav: %s\nnmla: %s\nnmns: %s\nnmlo: %s\nnmew: %s\nnmsp: %s\nnmtc: %s\nnmea_date: %s\nnmcrc: %s\n", nmtype, nmts, nmav, nmla, nmns, nmlo, nmew, nmsp, nmtc, nmea_date, nmcrc);
-    
-        ////printf("orig. NMEA date:\n%s\n", nmea_date);
-
-        /* convert wrong ddmmyy to d, m, y */
-        char day[3];
-        char mon[3];
-        char yea[3];
-
-        day[0] = nmea_date[0];
-        day[1] = nmea_date[1];
-        mon[0] = nmea_date[2];
-        mon[1] = nmea_date[3];
-        yea[0] = nmea_date[4];
-        yea[1] = nmea_date[5];
-        day[2] = '\0';
-        mon[2] = '\0';
-        yea[2] = '\0';
-
-        d = strtol(day, NULL, 10);
-        m = strtol(mon, NULL, 10);
-        y = strtol(yea, NULL, 10);
-
-        //fprintf(stdout, "Month: ->");
-        //fprintf(stdout, "%i<-\n", m);
-
-        if (y==99) {
-            y = 1999;
-        }
-        else {
-            y = y+2000;
-        }
-
-	    //printf("Date is:\nDay: %i\nMonth: %i\nYear: %i\n\n", d, m, y);
-
-        ////fprintf(stdout, "ADD-DAYS: started...\n");
-	    char * str = addDays(d, m, y, x);
-        //fprintf(stdout, "ADD-DAYS: (%s) ended.\n", str);
-
-        if (nmav[0] == 'A') {
-            //////fprintf(stdout, "A detected: ->%i<-\n", strlen(nmea_msg));
-	        sprintf(nmea_msg, "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,,,%c", nmtype, nmts, nmav, nmla, nmns, nmlo, \
-                                                                nmew, nmsp, nmtc, str, nmcrc[0]);
+        char * newDate;
+        if (!strcmp(arr[9], ""))
+        {
+            newDate = "";
         }
         else
         {
-            //printf("$GPRMC & V detected. NMEA Date: ->%s<-\n", nmea_date);
+            /* convert wrong ddmmyy to d, m, y */
+            char day[3];
+            char mon[3];
+            char yea[3];
 
-            if (m == 0) // checking for error with illegal month
-            {
-                sprintf(nmea_msg, "%s,%s,%s,,,,,,,000000,,,%c", nmtype, nmts, nmav, nmcrc[0]);
-                //free(str);
-                //printf("Empty date");
-                //return strdup("");
+            day[0] = arr[9][0];
+            day[1] = arr[9][1];
+            mon[0] = arr[9][2];
+            mon[1] = arr[9][3];
+            yea[0] = arr[9][4];
+            yea[1] = arr[9][5];
+            day[2] = '\0';
+            mon[2] = '\0';
+            yea[2] = '\0';
+
+            d = strtol(day, NULL, 10);
+            m = strtol(mon, NULL, 10);
+            y = strtol(yea, NULL, 10);
+
+            //printf("Month: ->");
+            //printf("%i<-\n", m);
+
+            if (y==99) {
+                y = 1999;
             }
-            else
-            {
-                sprintf(nmea_msg, "%s,%s,%s,,,,,,,%s,,,%c", nmtype, nmts, nmav, str, nmcrc[0]);
+            else {
+                y = y+2000;
             }
+
+    	    //printf("Date is:\nDay: %i\nMonth: %i\nYear: %i\n\n", d, m, y);
+
+            //printf("ADD-DAYS: started...\n");
+	        newDate = addDays(d, m, y, x);
+            //printf("ADD-DAYS: (%s) ended.\n", newDate);
         }
+        //printf("NMEA-date (new): %s\n", newDate);
 
-        free(str);        
+        //printf("A detected: ->%i<-\n", strlen(nmea_msg));
+	    sprintf(nmea_msg, "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,,,%c", arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], \
+                                                                arr[6], arr[7], arr[8], newDate, arr[12][0]);
 
-        //fprintf(stdout, "CRC: started...\n");
+        //////free(newDate);        
+
+        //printf("CRC: started...\n");
 	    crc = nmea0183_checksum(nmea_msg);
-        //fprintf(stdout, "CRC: ended. ->%s<-\n", nmea_msg);
+        //printf("CRC: ended. ->%s<-\n", nmea_msg);
 
 	    sprintf(nmea_msg, "%s*%X", nmea_msg, crc);
     }
@@ -244,7 +243,7 @@ char * convNMEA(char *nmea_msg)
     nmea_msg[strlen(nmea_msg)+1]=0;
     nmea_msg[strlen(nmea_msg)]='\n';
 
-    //fprintf(stdout, "convNMEA: returning nmea_msg string: %s\n", nmea_msg);
+    //printf("convNMEA: returning nmea_msg string: %s\n", nmea_msg);
     return strdup(nmea_msg);
 }
 
@@ -292,8 +291,8 @@ int main(int argc, char **argv)
         exit(1);
     }
     
-    fprintf(stdout, "Closing unexpectedly.\n");
-    fprintf(stderr, "ERROR closing unexpectedly.\n");
+    fprintf(stdout, "* TTconv closing unexpectedly.\n");
+    fprintf(stderr, "ERROR TTconv closing unexpectedly.\n");
     fclose(instream);
     fclose(outstream);
 
