@@ -81,6 +81,12 @@ the other stuff I couldn't figure out on my own.
 ------------------------------------------------------------------------
 Changelog:
 
+v6 (28-05-2019):
+-added some sanity checks to ttconv and possibly prevent possible weird
+ data points when recording tracks when GPS signal is lost (e.g. passing
+ through a tunnel)
+-preparation for merging with patch for GL1 devices
+
 v5 (27-05-2019):
 -updated/fixed readme, removed v? from file (annoying to update :) )
 
