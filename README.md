@@ -26,19 +26,19 @@ available for everyone as fast as possible, so it is still missing long
 time tests. USE AT YOUR OWN RISK! NO GUARANTEES FOR NOTHING (but it
 shouldn't be possible to break something the way it works and it can be
 completely reverted!).
-The code of the utility is very(!) very(!!) ugly(!!!). I haven't been
-coding in years. So it's possible that there will be some bugs.
+The code of the utility is [very(!) very(!!)] still a bit ugly(!!!). I
+haven't been coding in years. So it's possible that there will be some
+bugs.
 
-1. Doesn't seem to work with NavCore 9.541. Use previous version!
+1. Doesn't seem to work with some editions of NavCore 9.541, especially
+   on devices with only 32 MB RAM. Use previous version!
 
-2. Should work now also after standby! But shows wrong time for some seconds.
-   If signal disappears or if it stops working, manual start by additional
-   menu called "TTconv" is possible. Not sure if this is fixible, but seems
-   to be just a minor inconvience if any at all. I haven't checked
-   thoroughly how this might interfere with any logging, but so far it
-   looked good. But don't be confused if you encounter very odd data points:
-   E.g. MiniLog will record some very weird dates during the first seconds
-   after startup.
+2. Should work now also after standby! But shows wrong time for some
+   seconds. If signal disappears or if it stops working, manual start by
+   additional menu called "TTconv" is possible. Not sure if this is
+   fixible, but seems to be just a minor inconvience if any at all. I
+   haven't checked thoroughly how this might interfere with any logging,
+   but so far it looked good.
 
 3. I haven't tested it for long time. Maybe it will stop. Just restart as
    noted under 1.
@@ -59,8 +59,8 @@ Installation?
 Just unpack the archive to the main directory of the TomTom. It will then
 start automatically. In version v7 I added two menu options: "MiniLog Yes"
 and "MiniLog No". If you are a user of Joghurt's tool "MiniLog" or "Height",
-you should select "Yes", which will activate it. Otherwise select "No". The
-device will then reboot and both menu icons are deleted automatically.
+you should select "Yes", which will activate it. Otherwise select "No".
+The device will then reboot and both menu icons are deleted automatically.
 
 Advanced users:
 If you are using another tool that uses "ttn", you will have
@@ -80,18 +80,23 @@ files that came with this patch. But leaving them on the device will only
 occupy a few kilobyte and won't have any effect on the operation of the
 device.
 
+Icons?
+
+If you just don't like the menu icons you can delete them from the
+"sdkregistry" folder: resetgps.cap and ttconv.cap.
+
 ------------------------------------------------------------------------
 
 I hope this gives you many additional years of joy with the Rider 2013
 and the other GL1 personal navigation devices by TomTom.
 
 Also I have to stress that I am disappointed with TomTom. The Rider 2013
-is still officially supported, and the fix was not so difficult (for me it
-was, because I was not used to coding anymore).
+is still officially supported, and the fix was not so difficult (for me
+it was, because I was not used to coding anymore).
 On the other hand, fortunately TomTom provided the precompiled toolchain
-and uses Linux on the older devices which is the reason it was possible in
-the first place to fix it without further help (there was also a bit of
-luck involved in how every part of the system works together!).
+and uses Linux on the older devices which is the reason it was possible
+in the first place to fix it without further help (there was also a bit
+of luck involved in how every part of the system works together!).
 
 
 Acknowledgements:
@@ -110,6 +115,10 @@ the other stuff I couldn't figure out on my own.
 
 ------------------------------------------------------------------------
 Changelog:
+
+v9 (29-05-2019):
+-fixed memory leak in ttconv and cosmetic changes for rare NMEA sentences
+-remove ResetGPS menu icon (only TTconv is left for now)
 
 v8 (29-05-2019):
 -fixed typo in resetgps and readme :)
