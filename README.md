@@ -1,5 +1,5 @@
 # TTconv
-TTconv v4 for TomTom Rider 2013 (also known as K4, v4, or v5)
+TTconv for TomTom Rider 2013 (also known as K4, v4, or v5)
 by treysis (treysis@gmx.net)
 ------------------------------------------------------------------------
 
@@ -13,14 +13,20 @@ TTconv takes care of this.
 
 Bugs?
 
-This is the first version and it "just so" works. But I wanted to make it
-available for everyone as fast as possible. The code of the utility is
-very(!) very(!!) ugly(!!!). I haven't been coding in years. So it's possible
-that there will be some bugs.
+This is the 5th version and it seems it works. I wanted to make it
+available for everyone as fast as possible, so it is still missing long
+time tests. USE AT YOUR OWN RISK! NO GUARANTEES FOR NOTHING (but it
+shouldn't be possible to break something the way it works and it can be
+completely reverted!).
+The code of the utility is very(!) very(!!) ugly(!!!). I haven't been
+coding in years. So it's possible that there will be some bugs.
 
 1. Should work now also after standby! But shows wrong time for some seconds.
    If signal disappears or if it stops working, manual start by additional
-   menu called "TTconv" is possible.
+   menu called "TTconv" is possible. Not sure if this is fixible, but seems
+   to be just a minor inconvience if any at all. I haven't checked
+   thoroughly how this might interfere with any logging, but so far it
+   looked good. But don't be confused if you encounter very odd data points.
 
 2. I haven't tested it for long time. Maybe it will stop. Just restart as
    noted under 1.
@@ -28,28 +34,22 @@ that there will be some bugs.
 3. I also haven't looked at CPU usage/battery drain. Please tell me if you
    find any unusual battery drain.
 
-4. For a few seconds, the time will be 0:00:00 because I had to introduce
-   some delays when starting the scripts and didn't have the time yet to
-   optimize this process. I haven't checked yet how this might interfere
-   with any logging. So don't be confused about very odd data points.
-
-5. Won't work after the next WNRO Event on November 20, 2038. You'll be
-   transported back to 2019. Maybe I will provide a solution (it's already
-   in my head), but for now this has to suffice!
+4. Won't work after the next WNRO Event on November 20, 2038. You'll be
+   transported back to 2019. But the time should stay correct. But maybe
+   the current GPS won't even be around anymore. Maybe I will provide a
+   solution (it's already in my head), but for now this has to suffice!
 
 
 Installation?
 
 Just unpack the archive to the main directory of the TomTom. It will then
 start automatically. The start script (ttn) also includes the instructions
-for starting MiniLog. So if you use MiniLog, it should work just like before.
-If you are using minilog, you will have to overwrite the current "ttn" file
-when extracting or add this line (preferentially to the beginning) of "ttn":
+for starting MiniLog, but deactivated. So if you use MiniLog, you need to
+edit "ttn" file. If you are using another tool that uses "ttn", you will have
+to overwrite the current "ttn" file when extracting or add this line
+(preferentially to the beginning) of "ttn":
 
 	/mnt/sdcard/fixdate/resetgps &
-
-After standby you will have to manually start TTconv from the menu. Haven't
-figured out yet how to restart automatically after standby.
 
 ------------------------------------------------------------------------
 
@@ -81,7 +81,10 @@ the other stuff I couldn't figure out on my own.
 ------------------------------------------------------------------------
 Changelog:
 
-v4 (27-04-2019):
+v5 (27-05-2019):
+-updated/fixed readme, removed v? from file (annoying to update :) )
+
+v4 (27-05-2019):
 -should work now for non-MiniLog users
 -change in Orion.ini to not produce $GPZDA message (was only for testing)
 
