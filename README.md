@@ -1,5 +1,5 @@
 # TTconv
-TTconv v2 for TomTom Rider 2013 (also known as K4, v4, or v5)
+TTconv v4 for TomTom Rider 2013 (also known as K4, v4, or v5)
 by treysis (treysis@gmx.net)
 ------------------------------------------------------------------------
 
@@ -80,6 +80,13 @@ the other stuff I couldn't figure out on my own.
 
 ------------------------------------------------------------------------
 Changelog:
+
+v4 (27-04-2019):
+-should work now for non-MiniLog users
+-change in Orion.ini to not produce $GPZDA message (was only for testing)
+
+v3 (27-05-2019):
+-Adjusted ttn for non-Minilog-users (caused constant restart)
 
 v2 (27-05-2019):
 -Added resume after standby
