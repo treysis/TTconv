@@ -111,7 +111,10 @@ the other stuff I couldn't figure out on my own.
 ------------------------------------------------------------------------
 Changelog:
 
-v7 (29-08-2019):
+v8 (29-05-2019):
+-fixed typo in resetgps and readme :)
+
+v7 (29-05-2019):
 -merged with patch for units with GL1 GPS chip
 -added menu options to chose if you are MiniLog user or not
 -updated readme
