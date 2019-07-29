@@ -122,6 +122,10 @@ the other stuff I couldn't figure out on my own.
 ------------------------------------------------------------------------
 Changelog:
 
+v11 (08-06-2019):
+-minor code optimizations to ttconv
+-added version information to ttconv
+
 v10 (07-06-2019):
 -rewrite of parsing NMEA sentences to be more universal and remove some
  mistakes while parsing certain sentences, optimization of memory usage
