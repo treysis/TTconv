@@ -41,29 +41,34 @@ bugs.
    but so far it looked good.
 
 3. I haven't tested it for long time. Maybe it will stop. Just restart as
-   noted under 1.
+   noted under 1. Many users reported no issues at all over thousands of
+   kilometers, and other issues might also stem from reception issues.
 
-4. I also haven't looked at CPU usage/battery drain. Please tell me if you
-   find any unusual battery drain.
+4. I also haven't looked at CPU usage/battery drain. Please tell me if
+   you find any unusual battery drain.
 
 5. Won't work after the next WNRO Event on November 20, 2038. You'll be
    transported back to 2019. But the time should stay correct. But maybe
    the current GPS won't even be around anymore. Maybe I will provide a
    solution (it's already in my head), but for now this has to suffice!
 
-6. Small memory leak causes increase of RAM usage of 2 KB per hour.
+6. Probably will catapult you 19.7 years into the future once TomTom
+   releases an official update.
 
 
 Installation?
 
 Just unpack the archive to the main directory of the TomTom. It will then
-start automatically. In version v7 I added two menu options: "MiniLog Yes"
-and "MiniLog No". If you are a user of Joghurt's tool "MiniLog" or "Height",
-you should select "Yes", which will activate it. Otherwise select "No".
-The device will then reboot and both menu icons are deleted automatically.
+start automatically. In version v10 I adjusted the startup script to
+automatically start the additional tools "MiniLog" or "Height" by a user
+named "Joghurt", which many people have installed on their devices. The
+old icons from version v7 ("MiniLog Yes" and "MiniLog No") are not needed
+anymore and are not included in newer versions (delete the following
+files manually from folder "sdkregistry": minilogyes.cap, minilogyes.bmp,
+minilogno.cap, minilogno.bmp).
 
 Advanced users:
-If you are using another tool that uses "ttn", you will have
+If you are using another tool that uses "ttn" for startup, you will have
 to overwrite the current "ttn" file when extracting or add this line
 (preferentially to the beginning) of "ttn":
 
@@ -83,7 +88,7 @@ device.
 Icons?
 
 If you just don't like the menu icons you can delete them from the
-"sdkregistry" folder: resetgps.cap and ttconv.cap.
+"sdkregistry" folder: ttconv.cap and ttconv.bmp.
 
 ------------------------------------------------------------------------
 
@@ -92,7 +97,8 @@ and the other GL1 personal navigation devices by TomTom.
 
 Also I have to stress that I am disappointed with TomTom. The Rider 2013
 is still officially supported, and the fix was not so difficult (for me
-it was, because I was not used to coding anymore).
+it was, because I was not used to coding anymore). Meanwhile, Garmin has
+published a fix for their 2009 model Zumo 660 (05-06-2019).
 On the other hand, fortunately TomTom provided the precompiled toolchain
 and uses Linux on the older devices which is the reason it was possible
 in the first place to fix it without further help (there was also a bit
@@ -115,6 +121,13 @@ the other stuff I couldn't figure out on my own.
 
 ------------------------------------------------------------------------
 Changelog:
+
+v10 (07-06-2019):
+-rewrite of parsing NMEA sentences to be more universal and remove some
+ mistakes while parsing certain sentences, optimization of memory usage
+-fully automatic startup, no configuration for MiniLog neccessary anymore
+-removed delays from scripts for faster startup time
+-updated readme
 
 v9 (29-05-2019):
 -fixed memory leak in ttconv and cosmetic changes for rare NMEA sentences
