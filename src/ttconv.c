@@ -1,5 +1,7 @@
 /* Conversion tool to convert faulty NMEA0183 $GPRMC sentences on TomTom devices with  */
 // AR1520 and GL1 GPS chipsets, which are affected by the GPS WNRO Event               */
+//                                                                                     */
+// 2020, GPLv3, by treysis@gmx.net                                                     */
 
 #include <stdio.h> 
 #include <string.h>
@@ -250,7 +252,7 @@ int main(int argc, char **argv)
     int             i = 0;
     char            str[100];
 
-    fprintf(stdout, "* TTconv-v11 date converter by treysis (treysis@gmx.net)\n");
+    fprintf(stdout, "* TTconv-v12 date converter by treysis (treysis@gmx.net)\n");
 
     buffer_size=sizeof(unsigned char)*BUFFERSIZE;
     /* open named pipes for reading and writing */
