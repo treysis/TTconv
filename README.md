@@ -119,8 +119,15 @@ for calculating NMEA0183 checksums
 for answering my questions on named pipes, strings, pointers, and all
 the other stuff I couldn't figure out on my own.
 
+- The crowd at digital-eliteboard.net and gpsurl.com for providing me the necessary
+resources for TomTom devices, testing, and valuable feedback, potentially (actually,
+not really) putting their devices at risk.
+
 ------------------------------------------------------------------------
 Changelog:
+
+#### v12 (07-05-2020): ####
+- Open source release (GPLv3)
 
 #### v11 (08-06-2019): ####
 - minor code optimizations to ttconv
