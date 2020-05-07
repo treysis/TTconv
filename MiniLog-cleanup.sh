@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# 2020, GPLv3, by treysis@gmx.net
+
 # This script cleans up recorded MiniLog tracks,
 # except for the most recent 30 files.
 
