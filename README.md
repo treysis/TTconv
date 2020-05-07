@@ -122,47 +122,47 @@ the other stuff I couldn't figure out on my own.
 ------------------------------------------------------------------------
 Changelog:
 
-v11 (08-06-2019):
--minor code optimizations to ttconv
--added version information to ttconv
+#### v11 (08-06-2019): ####
+- minor code optimizations to ttconv
+- added version information to ttconv
 
-v10 (07-06-2019):
--rewrite of parsing NMEA sentences to be more universal and remove some
+#### v10 (07-06-2019): ####
+- rewrite of parsing NMEA sentences to be more universal and remove some
  mistakes while parsing certain sentences, optimization of memory usage
--fully automatic startup, no configuration for MiniLog neccessary anymore
--removed delays from scripts for faster startup time
--updated readme
+- fully automatic startup, no configuration for MiniLog neccessary anymore
+- removed delays from scripts for faster startup time
+- updated readme
 
-v9 (29-05-2019):
--fixed memory leak in ttconv and cosmetic changes for rare NMEA sentences
--remove ResetGPS menu icon (only TTconv is left for now)
+#### v9 (29-05-2019): ####
+- fixed memory leak in ttconv and cosmetic changes for rare NMEA sentences
+- remove ResetGPS menu icon (only TTconv is left for now)
 
-v8 (29-05-2019):
--fixed typo in resetgps and readme :)
+#### v8 (29-05-2019): ####
+- fixed typo in resetgps and readme :)
 
-v7 (29-05-2019):
--merged with patch for units with GL1 GPS chip
--added menu options to chose if you are MiniLog user or not
--updated readme
+#### v7 (29-05-2019): ####
+- merged with patch for units with GL1 GPS chip
+- added menu options to chose if you are MiniLog user or not
+- updated readme
 
-v6 (28-05-2019):
--added some sanity checks to ttconv and possibly prevent possible weird
+#### v6 (28-05-2019): ####
+- added some sanity checks to ttconv and possibly prevent possible weird
  data points when recording tracks when GPS signal is lost (e.g. passing
  through a tunnel)
--preparation for merging with patch for GL1 devices
+- preparation for merging with patch for GL1 devices
 
-v5 (27-05-2019):
--updated/fixed readme, removed v? from file (annoying to update :) )
+#### v5 (27-05-2019): ####
+- updated/fixed readme, removed v? from file (annoying to update :) )
 
-v4 (27-05-2019):
--should work now for non-MiniLog users
--change in Orion.ini to not produce $GPZDA message (was only for testing)
+#### v4 (27-05-2019): ####
+- should work now for non-MiniLog users
+- change in Orion.ini to not produce $GPZDA message (was only for testing)
 
-v3 (27-05-2019):
--Adjusted ttn for non-Minilog-users (caused constant restart)
+#### v3 (27-05-2019): ####
+- Adjusted ttn for non-Minilog-users (caused constant restart)
 
-v2 (27-05-2019):
--Added resume after standby
+#### v2 (27-05-2019): ####
+- Added resume after standby
 
-v1 (26-05-2019):
--Initial version
+#### v1 (26-05-2019): ####
+- Initial version
